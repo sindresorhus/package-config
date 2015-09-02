@@ -22,8 +22,6 @@ module.exports = function (namespace, cwd) {
 
 			return readPkg(fp, {normalize: false}).then(function (pkg) {
 				return addFp(pkg[namespace] || {}, fp);
-			}, function () {
-				return addFp({}, fp);
 			});
 		});
 };
@@ -39,13 +37,7 @@ module.exports.sync = function (namespace, cwd) {
 		return addFp({}, fp);
 	}
 
-	var pkg;
-
-	try {
-		pkg = readPkg.sync(fp, {normalize: false});
-	} catch (err) {
-		return addFp({}, fp);
-	}
+	var pkg = readPkg.sync(fp, {normalize: false});
 
 	return addFp(pkg[namespace] || {}, fp);
 };
