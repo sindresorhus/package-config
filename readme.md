@@ -1,0 +1,77 @@
+# pkg-conf [![Build Status](https://travis-ci.org/sindresorhus/pkg-conf.svg?branch=master)](https://travis-ci.org/sindresorhus/pkg-conf)
+
+> Get namespaced config from the closest package.json
+
+For example, [XO](https://github.com/sindresorhus/xo) uses the `xo` namespace in package.json and [ESLint](http://eslint.org) uses `eslintConfig`.
+
+
+## Install
+
+```
+$ npm install --save pkg-conf
+```
+
+
+## Usage
+
+```json
+{
+	"name": "some-package",
+	"version": "1.0.0",
+	"unicorn": {
+		"rainbow": true
+	}
+}
+```
+
+```js
+var pkgConf = require('pkg-conf');
+
+pkgConf('unicorn').then(function (config) {
+	console.log(config.rainbow);
+	//=> true
+});
+```
+
+
+## API
+
+It [walks up](https://github.com/sindresorhus/find-up) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
+
+### pkgConf(namespace, [cwd])
+
+Returns a promise that resolves to the config.
+
+### pkgConf.sync(namespace, [cwd])
+
+Returns the config.
+
+#### namespace
+
+Type: `string`
+
+The package.json namespace you want.
+
+#### cwd
+
+Type: `string`  
+Default: `.`
+
+Directory to start looking for a package.json file.
+
+### pkgConf.filepath(config)
+
+Pass in the `config` returned from any of the above methods.
+
+Returns the filepath to the package.json file or `null`.
+
+
+## Related
+
+- [read-pkg](https://github.com/sindresorhus/read-pkg) - Read a package.json file
+- [find-up](https://github.com/sindresorhus/find-up) - Find a file by walking up parent directories
+
+
+## License
+
+MIT © [Sindre Sorhus](http://sindresorhus.com)
