@@ -1,6 +1,6 @@
 {
   "name": "pkg-conf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Get namespaced config from the closest package.json",
   "license": "MIT",
   "repository": "sindresorhus/pkg-conf",
