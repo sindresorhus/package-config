@@ -68,6 +68,7 @@ Returns the filepath to the package.json file or `null`.
 
 ## Related
 
+- [read-pkg-up](https://github.com/sindresorhus/read-pkg-up) - Read the closest package.json file
 - [read-pkg](https://github.com/sindresorhus/read-pkg) - Read a package.json file
 - [find-up](https://github.com/sindresorhus/find-up) - Find a file by walking up parent directories
 
