@@ -1,32 +1,28 @@
-'use strict';
-var path = require('path');
-var test = require('ava');
-var fn = require('./');
-var cwd = path.join(__dirname, 'fixture');
-var pkgPath = path.join(__dirname, 'package.json');
+import path from 'path';
+import test from 'ava';
+import fn from './';
 
-test('async', function (t) {
-	return fn('fixture', cwd).then(function (x) {
-		t.true(x.foo);
-		t.is(fn.filepath(x), pkgPath);
-	});
-});
+const cwd = path.join(__dirname, 'fixture');
+const pkgPath = path.join(__dirname, 'package.json');
 
-test('async - non-existent namespace', function (t) {
-	return fn('unicorn', cwd).then(function (x) {
-		t.is(typeof x, 'object');
-	});
-});
-
-test('sync', function (t) {
-	var x = fn.sync('fixture', cwd);
+test('async', async t => {
+	const x = await fn('fixture', cwd);
 	t.true(x.foo);
 	t.is(fn.filepath(x), pkgPath);
-	t.end();
 });
 
-test('sync - non-existent namespace', function (t) {
-	var x = fn.sync('unicorn', cwd);
+test('async - non-existent namespace', async t => {
+	const x = await fn('unicorn', cwd);
 	t.is(typeof x, 'object');
-	t.end();
+});
+
+test('sync', t => {
+	const x = fn.sync('fixture', cwd);
+	t.true(x.foo);
+	t.is(fn.filepath(x), pkgPath);
+});
+
+test('sync - non-existent namespace', t => {
+	const x = fn.sync('unicorn', cwd);
+	t.is(typeof x, 'object');
 });
