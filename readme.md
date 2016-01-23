@@ -25,9 +25,9 @@ $ npm install --save pkg-conf
 ```
 
 ```js
-var pkgConf = require('pkg-conf');
+const pkgConf = require('pkg-conf');
 
-pkgConf('unicorn').then(function (config) {
+pkgConf('unicorn').then(config => {
 	console.log(config.rainbow);
 	//=> true
 });
