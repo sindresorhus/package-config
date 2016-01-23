@@ -38,11 +38,11 @@ pkgConf('unicorn').then(function (config) {
 
 It [walks up](https://github.com/sindresorhus/find-up) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
 
-### pkgConf(namespace, [cwd])
+### pkgConf(namespace, [options])
 
 Returns a promise that resolves to the config.
 
-### pkgConf.sync(namespace, [cwd])
+### pkgConf.sync(namespace, [options])
 
 Returns the config.
 
@@ -52,12 +52,20 @@ Type: `string`
 
 The package.json namespace you want.
 
-#### cwd
+#### options
 
-Type: `string`  
-Default: `.`
+##### cwd
 
-Directory to start looking for a package.json file.
+Type: `string`<br>
+Default: `process.cwd()`
+
+Directory to start looking up for a package.json file.
+
+##### defaults
+
+Type: `object`<br>
+
+Default config.
 
 ### pkgConf.filepath(config)
 

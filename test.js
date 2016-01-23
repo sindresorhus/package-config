@@ -6,23 +6,29 @@ const cwd = path.join(__dirname, 'fixture');
 const pkgPath = path.join(__dirname, 'package.json');
 
 test('async', async t => {
-	const x = await fn('fixture', cwd);
+	const x = await fn('fixture', {cwd});
 	t.true(x.foo);
 	t.is(fn.filepath(x), pkgPath);
 });
 
 test('async - non-existent namespace', async t => {
-	const x = await fn('unicorn', cwd);
+	const x = await fn('unicorn', {cwd});
 	t.is(typeof x, 'object');
 });
 
 test('sync', t => {
-	const x = fn.sync('fixture', cwd);
+	const x = fn.sync('fixture', {cwd});
 	t.true(x.foo);
 	t.is(fn.filepath(x), pkgPath);
 });
 
 test('sync - non-existent namespace', t => {
-	const x = fn.sync('unicorn', cwd);
+	const x = fn.sync('unicorn', {cwd});
 	t.is(typeof x, 'object');
+});
+
+test('defaults option', t => {
+	const x = fn.sync('fixture', {cwd, defaults: {bar: false}});
+	t.true(x.foo);
+	t.false(x.bar);
 });
