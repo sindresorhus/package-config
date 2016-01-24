@@ -25,7 +25,7 @@ module.exports = function (namespace, opts) {
 			}
 
 			if (!fp) {
-				return addFp({}, fp);
+				return addFp(opts.defaults || {}, fp);
 			}
 
 			return readPkg(fp, {normalize: false}).then(function (pkg) {
@@ -49,7 +49,7 @@ module.exports.sync = function (namespace, opts) {
 	var fp = findUp.sync('package.json', {cwd: opts.cwd});
 
 	if (!fp) {
-		return addFp({}, fp);
+		return addFp(opts.defaults || {}, fp);
 	}
 
 	var pkg = readPkg.sync(fp, {normalize: false});

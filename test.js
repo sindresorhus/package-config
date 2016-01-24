@@ -12,7 +12,7 @@ test('async', async t => {
 });
 
 test('async - non-existent namespace', async t => {
-	const x = await fn('unicorn', {cwd});
+	const x = await fn('noop', {cwd});
 	t.is(typeof x, 'object');
 });
 
@@ -23,7 +23,7 @@ test('sync', t => {
 });
 
 test('sync - non-existent namespace', t => {
-	const x = fn.sync('unicorn', {cwd});
+	const x = fn.sync('noop', {cwd});
 	t.is(typeof x, 'object');
 });
 
@@ -31,4 +31,7 @@ test('defaults option', t => {
 	const x = fn.sync('fixture', {cwd, defaults: {bar: false}});
 	t.true(x.foo);
 	t.false(x.bar);
+
+	const x2 = fn.sync('noop', {defaults: {unicorn: true}});
+	t.true(x2.unicorn);
 });
