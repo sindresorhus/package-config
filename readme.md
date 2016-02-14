@@ -2,7 +2,7 @@
 
 > Get namespaced config from the closest package.json
 
-For example, [XO](https://github.com/sindresorhus/xo) uses the `xo` namespace in package.json and [ESLint](http://eslint.org) uses `eslintConfig`.
+Having tool specific config in package.json reduces the amount of metafiles in your repo (there are usually a lot!) and makes the config obvious compared to hidden dotfiles like `.jshintrc`, which can end up causing confusion. [XO](https://github.com/sindresorhus/xo), for example, use the `xo` namespace in package.json, and [ESLint](http://eslint.org) uses `eslintConfig`. Many more tools supports this, like [AVA](https://github.com/sindresorhus/ava), [Babel](https://babeljs.io), [nyc](https://github.com/bcoe/nyc), etc. 
 
 
 ## Install
