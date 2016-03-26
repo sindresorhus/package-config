@@ -37,8 +37,8 @@
   ],
   "dependencies": {
     "find-up": "^1.0.0",
+    "load-json-file": "^1.1.0",
     "object-assign": "^4.0.1",
-    "read-pkg": "^1.0.0",
     "symbol": "^0.2.1"
   },
   "devDependencies": {

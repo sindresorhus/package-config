@@ -1,6 +1,6 @@
 'use strict';
 var findUp = require('find-up');
-var readPkg = require('read-pkg');
+var loadJsonFile = require('load-json-file');
 var objectAssign = require('object-assign');
 var Symbol = require('symbol');
 var fpSymbol = Symbol('package.json filepath');
@@ -28,7 +28,7 @@ module.exports = function (namespace, opts) {
 				return addFp(opts.defaults || {}, fp);
 			}
 
-			return readPkg(fp, {normalize: false}).then(function (pkg) {
+			return loadJsonFile(fp).then(function (pkg) {
 				return addFp(objectAssign({}, opts.defaults, pkg[namespace]), fp);
 			});
 		});
@@ -52,7 +52,7 @@ module.exports.sync = function (namespace, opts) {
 		return addFp(opts.defaults || {}, fp);
 	}
 
-	var pkg = readPkg.sync(fp, {normalize: false});
+	var pkg = loadJsonFile.sync(fp);
 
 	return addFp(objectAssign({}, opts.defaults, pkg[namespace]), fp);
 };
