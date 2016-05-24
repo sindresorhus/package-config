@@ -63,7 +63,7 @@ Directory to start looking up for a package.json file.
 
 ##### defaults
 
-Type: `object`<br>
+Type: `Object`<br>
 
 Default config.
 
@@ -83,4 +83,4 @@ Returns the filepath to the package.json file or `null`.
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](https://sindresorhus.com)
