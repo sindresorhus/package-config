@@ -2,11 +2,11 @@
 const findUp = require('find-up');
 const loadJsonFile = require('load-json-file');
 
-const fpSymbol = Symbol('package.json filepath');
+const filepaths = new WeakMap();
 
-function addFp(x, fp) {
-	x[fpSymbol] = fp;
-	return x;
+function addFp(obj, fp) {
+	filepaths.set(obj, fp);
+	return obj;
 }
 
 module.exports = (namespace, opts) => {
@@ -45,4 +45,4 @@ module.exports.sync = (namespace, opts) => {
 	return addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp);
 };
 
-module.exports.filepath = conf => conf[fpSymbol];
+module.exports.filepath = conf => filepaths.get(conf);
