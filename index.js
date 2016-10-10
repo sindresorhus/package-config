@@ -5,16 +5,12 @@ const loadJsonFile = require('load-json-file');
 
 const filepaths = new WeakMap();
 const filepath = conf => filepaths.get(conf);
+const findNextCwd = pkgPath => path.resolve(path.dirname(pkgPath), '..');
 
-function addFp(obj, fp) {
+const addFp = (obj, fp) => {
 	filepaths.set(obj, fp);
 	return obj;
-}
-
-function findNextCwd(pkgPath) {
-	const dirName = path.dirname(pkgPath);
-	return path.join(dirName, '..');
-}
+};
 
 const pkgConf = (namespace, opts) => {
 	if (!namespace) {
@@ -31,8 +27,7 @@ const pkgConf = (namespace, opts) => {
 
 			return loadJsonFile(fp).then(pkg => {
 				if (opts.skipOnFalse && pkg[namespace] === false) {
-					const nextCwd = findNextCwd(fp);
-					const newOpts = Object.assign({}, opts, {cwd: nextCwd});
+					const newOpts = Object.assign({}, opts, {cwd: findNextCwd(fp)});
 					return pkgConf(namespace, newOpts);
 				}
 
@@ -55,9 +50,9 @@ const sync = (namespace, opts) => {
 	}
 
 	const pkg = loadJsonFile.sync(fp);
+
 	if (opts.skipOnFalse && pkg[namespace] === false) {
-		const nextCwd = findNextCwd(fp);
-		const newOpts = Object.assign({}, opts, {cwd: nextCwd});
+		const newOpts = Object.assign({}, opts, {cwd: findNextCwd(fp)});
 		return sync(namespace, newOpts);
 	}
 
