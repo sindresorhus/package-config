@@ -67,6 +67,14 @@ Type: `Object`<br>
 
 Default config.
 
+##### skipOnFalse
+
+Type: `boolean`<br>
+Default: `false`
+
+Skips `package.json` files that have the namespaced
+config explicitly set to `false`.
+
 ### pkgConf.filepath(config)
 
 Pass in the `config` returned from any of the above methods.
