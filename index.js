@@ -1,15 +1,22 @@
 'use strict';
+const path = require('path');
 const findUp = require('find-up');
 const loadJsonFile = require('load-json-file');
 
 const filepaths = new WeakMap();
+const filepath = conf => filepaths.get(conf);
 
 function addFp(obj, fp) {
 	filepaths.set(obj, fp);
 	return obj;
 }
 
-module.exports = (namespace, opts) => {
+function findNextCwd(pkgPath) {
+	const dirName = path.dirname(pkgPath);
+	return path.join(dirName, '..');
+}
+
+const pkgConf = (namespace, opts) => {
 	if (!namespace) {
 		return Promise.reject(new TypeError('Expected a namespace'));
 	}
@@ -22,12 +29,19 @@ module.exports = (namespace, opts) => {
 				return addFp(Object.assign({}, opts.defaults), fp);
 			}
 
-			return loadJsonFile(fp).then(pkg =>
-				addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp));
+			return loadJsonFile(fp).then(pkg => {
+				if (opts.skipOnFalse && pkg[namespace] === false) {
+					const nextCwd = findNextCwd(fp);
+					const newOpts = Object.assign({}, opts, {cwd: nextCwd});
+					return pkgConf(namespace, newOpts);
+				}
+
+				return addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp);
+			});
 		});
 };
 
-module.exports.sync = (namespace, opts) => {
+const sync = (namespace, opts) => {
 	if (!namespace) {
 		throw new TypeError('Expected a namespace');
 	}
@@ -41,8 +55,15 @@ module.exports.sync = (namespace, opts) => {
 	}
 
 	const pkg = loadJsonFile.sync(fp);
+	if (opts.skipOnFalse && pkg[namespace] === false) {
+		const nextCwd = findNextCwd(fp);
+		const newOpts = Object.assign({}, opts, {cwd: nextCwd});
+		return sync(namespace, newOpts);
+	}
 
 	return addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp);
 };
 
-module.exports.filepath = conf => filepaths.get(conf);
+module.exports = pkgConf;
+module.exports.filepath = filepath;
+module.exports.sync = sync;
