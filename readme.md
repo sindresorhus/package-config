@@ -2,7 +2,7 @@
 
 > Get namespaced config from the closest package.json
 
-Having tool specific config in package.json reduces the amount of metafiles in your repo (there are usually a lot!) and makes the config obvious compared to hidden dotfiles like `.jshintrc`, which can end up causing confusion. [XO](https://github.com/sindresorhus/xo), for example, use the `xo` namespace in package.json, and [ESLint](http://eslint.org) uses `eslintConfig`. Many more tools supports this, like [AVA](https://ava.li), [Babel](https://babeljs.io), [nyc](https://github.com/bcoe/nyc), etc.
+Having tool specific config in package.json reduces the amount of metafiles in your repo (there are usually a lot!) and makes the config obvious compared to hidden dotfiles like `.eslintrc`, which can end up causing confusion. [XO](https://github.com/sindresorhus/xo), for example, uses the `xo` namespace in package.json, and [ESLint](http://eslint.org) uses `eslintConfig`. Many more tools supports this, like [AVA](https://ava.li), [Babel](https://babeljs.io), [nyc](https://github.com/istanbuljs/nyc), etc.
 
 
 ## Install
@@ -40,7 +40,7 @@ It [walks up](https://github.com/sindresorhus/find-up) parent directories until 
 
 ### pkgConf(namespace, [options])
 
-Returns a promise that resolves to the config.
+Returns a `Promise` for the config.
 
 ### pkgConf.sync(namespace, [options])
 
@@ -71,7 +71,7 @@ Default config.
 
 Pass in the `config` returned from any of the above methods.
 
-Returns the filepath to the package.json file or `null`.
+Returns the filepath to the package.json file or `null` when not found.
 
 
 ## Related
