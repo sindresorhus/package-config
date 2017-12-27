@@ -8,7 +8,7 @@ Having tool specific config in package.json reduces the amount of metafiles in y
 ## Install
 
 ```
-$ npm install --save pkg-conf
+$ npm install pkg-conf
 ```
 
 
@@ -27,10 +27,12 @@ $ npm install --save pkg-conf
 ```js
 const pkgConf = require('pkg-conf');
 
-pkgConf('unicorn').then(config => {
+(async () => {
+	const config = await pkgConf('unicorn');
+
 	console.log(config.rainbow);
 	//=> true
-});
+})();
 ```
 
 

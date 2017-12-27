@@ -1,6 +1,6 @@
 import path from 'path';
 import test from 'ava';
-import m from './';
+import m from '.';
 
 const cwd = path.join(__dirname, 'fixture');
 const nestedCwd = path.join(cwd, 'nested');
