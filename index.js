@@ -60,5 +60,6 @@ const sync = (namespace, opts) => {
 };
 
 module.exports = pkgConf;
+module.exports.default = pkgConf;
 module.exports.filepath = filepath;
 module.exports.sync = sync;

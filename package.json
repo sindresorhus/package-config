@@ -10,13 +10,14 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo && ava && tsd-check"
   },
   "files": [
-    "index.js"
+		"index.js",
+		"index.d.ts"
   ],
   "keywords": [
     "json",
@@ -36,12 +37,13 @@
     "namespaced"
   ],
   "dependencies": {
-    "find-up": "^2.0.0",
-    "load-json-file": "^4.0.0"
+    "find-up": "^3.0.0",
+    "load-json-file": "^5.2.0"
   },
   "devDependencies": {
-    "ava": "*",
-    "xo": "*"
+    "ava": "^1.2.1",
+    "tsd-check": "^0.3.0",
+    "xo": "^0.24.0"
   },
   "fixture": {
     "foo": true
