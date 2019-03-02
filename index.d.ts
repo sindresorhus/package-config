@@ -25,9 +25,9 @@ export interface Options<ConfigType extends Config> {
 	 * @example
 	 *
 	 * {
-	 *   "name": "some-package",
-	 *   "version": "1.0.0",
-	 *   "unicorn": false
+	 * 	"name": "some-package",
+	 * 	"version": "1.0.0",
+	 * 	"unicorn": false
 	 * }
 	 */
 	skipOnFalse?: boolean;

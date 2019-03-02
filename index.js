@@ -7,56 +7,52 @@ const filepaths = new WeakMap();
 const filepath = conf => filepaths.get(conf);
 const findNextCwd = pkgPath => path.resolve(path.dirname(pkgPath), '..');
 
-const addFp = (obj, fp) => {
-	filepaths.set(obj, fp);
-	return obj;
+const addFilePath = (object, filePath) => {
+	filepaths.set(object, filePath);
+	return object;
 };
 
-const pkgConf = (namespace, opts) => {
+const pkgConf = (namespace, options = {}) => {
 	if (!namespace) {
 		return Promise.reject(new TypeError('Expected a namespace'));
 	}
 
-	opts = opts || {};
-
-	return findUp('package.json', opts.cwd ? {cwd: opts.cwd} : {})
-		.then(fp => {
-			if (!fp) {
-				return addFp(Object.assign({}, opts.defaults), fp);
+	return findUp('package.json', options.cwd ? {cwd: options.cwd} : {})
+		.then(filePath => {
+			if (!filePath) {
+				return addFilePath(Object.assign({}, options.defaults), filePath);
 			}
 
-			return loadJsonFile(fp).then(pkg => {
-				if (opts.skipOnFalse && pkg[namespace] === false) {
-					const newOpts = Object.assign({}, opts, {cwd: findNextCwd(fp)});
-					return pkgConf(namespace, newOpts);
+			return loadJsonFile(filePath).then(package_ => {
+				if (options.skipOnFalse && package_[namespace] === false) {
+					const newOptions = Object.assign({}, options, {cwd: findNextCwd(filePath)});
+					return pkgConf(namespace, newOptions);
 				}
 
-				return addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp);
+				return addFilePath(Object.assign({}, options.defaults, package_[namespace]), filePath);
 			});
 		});
 };
 
-const sync = (namespace, opts) => {
+const sync = (namespace, options = {}) => {
 	if (!namespace) {
 		throw new TypeError('Expected a namespace');
 	}
 
-	opts = opts || {};
+	const filePath = findUp.sync('package.json', options.cwd ? {cwd: options.cwd} : {});
 
-	const fp = findUp.sync('package.json', opts.cwd ? {cwd: opts.cwd} : {});
-
-	if (!fp) {
-		return addFp(Object.assign({}, opts.defaults), fp);
+	if (!filePath) {
+		return addFilePath(Object.assign({}, options.defaults), filePath);
 	}
 
-	const pkg = loadJsonFile.sync(fp);
+	const package_ = loadJsonFile.sync(filePath);
 
-	if (opts.skipOnFalse && pkg[namespace] === false) {
-		const newOpts = Object.assign({}, opts, {cwd: findNextCwd(fp)});
-		return sync(namespace, newOpts);
+	if (options.skipOnFalse && package_[namespace] === false) {
+		const newOptions = Object.assign({}, options, {cwd: findNextCwd(filePath)});
+		return sync(namespace, newOptions);
 	}
 
-	return addFp(Object.assign({}, opts.defaults, pkg[namespace]), fp);
+	return addFilePath(Object.assign({}, options.defaults, package_[namespace]), filePath);
 };
 
 module.exports = pkgConf;

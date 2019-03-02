@@ -56,6 +56,8 @@ The package.json namespace you want.
 
 #### options
 
+Type: `Object`
+
 ##### cwd
 
 Type: `string`<br>
@@ -79,6 +81,7 @@ Skip `package.json` files that have the namespaced config explicitly set to `fal
 Continues searching upwards until the next `package.json` file is reached. This can be useful when you need to support the ability for users to have nested `package.json` files, but only read from the root one, like in the case of [`electron-builder`](https://github.com/electron-userland/electron-builder/wiki/Options#AppMetadata) where you have one `package.json` file for the app and one top-level for development.
 
 Example usage for the user:
+
 ```json
 {
 	"name": "some-package",

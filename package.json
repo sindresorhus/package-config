@@ -1,51 +1,51 @@
 {
-  "name": "pkg-conf",
-  "version": "2.1.0",
-  "description": "Get namespaced config from the closest package.json",
-  "license": "MIT",
-  "repository": "sindresorhus/pkg-conf",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=6"
-  },
-  "scripts": {
-    "test": "xo && ava && tsd-check"
-  },
-  "files": [
+	"name": "pkg-conf",
+	"version": "2.1.0",
+	"description": "Get namespaced config from the closest package.json",
+	"license": "MIT",
+	"repository": "sindresorhus/pkg-conf",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=6"
+	},
+	"scripts": {
+		"test": "xo && ava && tsd-check"
+	},
+	"files": [
 		"index.js",
 		"index.d.ts"
-  ],
-  "keywords": [
-    "json",
-    "read",
-    "parse",
-    "file",
-    "fs",
-    "graceful",
-    "load",
-    "pkg",
-    "package",
-    "config",
-    "conf",
-    "configuration",
-    "object",
-    "namespace",
-    "namespaced"
-  ],
-  "dependencies": {
-    "find-up": "^3.0.0",
-    "load-json-file": "^5.2.0"
-  },
-  "devDependencies": {
-    "ava": "^1.2.1",
-    "tsd-check": "^0.3.0",
-    "xo": "^0.24.0"
-  },
-  "fixture": {
-    "foo": true
-  }
+	],
+	"keywords": [
+		"json",
+		"read",
+		"parse",
+		"file",
+		"fs",
+		"graceful",
+		"load",
+		"pkg",
+		"package",
+		"config",
+		"conf",
+		"configuration",
+		"object",
+		"namespace",
+		"namespaced"
+	],
+	"dependencies": {
+		"find-up": "^3.0.0",
+		"load-json-file": "^5.2.0"
+	},
+	"devDependencies": {
+		"ava": "^1.2.1",
+		"tsd-check": "^0.3.0",
+		"xo": "^0.24.0"
+	},
+	"fixture": {
+		"foo": true
+	}
 }
