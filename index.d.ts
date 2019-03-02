@@ -10,6 +10,8 @@ export interface Options<ConfigType extends Config> {
 
 	/**
 	 * Default config.
+	 *
+	 * @default {}
 	 */
 	defaults?: ConfigType;
 
