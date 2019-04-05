@@ -1,5 +1,6 @@
-import {expectType} from 'tsd-check';
-import pkgConf, {Config, sync, filepath} from '.';
+import {expectType} from 'tsd';
+import pkgConf = require('.');
+import {Config, sync, filepath} from '.';
 
 pkgConf('name', {cwd: '.'});
 pkgConf('name', {skipOnFalse: true});

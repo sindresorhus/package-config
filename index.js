@@ -56,6 +56,7 @@ const sync = (namespace, options = {}) => {
 };
 
 module.exports = pkgConf;
+// TODO: Remove this for the next major release
 module.exports.default = pkgConf;
 module.exports.filepath = filepath;
 module.exports.sync = sync;
