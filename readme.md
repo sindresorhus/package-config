@@ -1,4 +1,4 @@
-# pkg-conf [![Build Status](https://travis-ci.org/sindresorhus/pkg-conf.svg?branch=master)](https://travis-ci.org/sindresorhus/pkg-conf)
+# pkg-conf
 
 > Get namespaced config from the closest package.json
 
