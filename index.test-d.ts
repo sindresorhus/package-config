@@ -1,19 +1,18 @@
-import {expectType} from 'tsd';
-import pkgConf = require('.');
-import {Config, sync, filepath} from '.';
+import {expectType, expectAssignable} from 'tsd';
+import {packageConfig, packageConfigSync, packageJsonPath, Config} from './index.js';
 
-pkgConf('name', {cwd: '.'});
-pkgConf('name', {skipOnFalse: true});
+await packageConfig('name', {cwd: '.'});
+await packageConfig('name', {skipOnFalse: true});
 
-expectType<Promise<Config>>(pkgConf('name'));
-expectType<Promise<{foo: string; [key: string]: unknown}>>(
-	pkgConf('name', {defaults: {foo: 'bar'}})
+expectType<Promise<Config>>(packageConfig('name'));
+expectAssignable<Promise<{[key: string]: unknown; foo: string}>>(
+	packageConfig('name', {defaults: {foo: 'bar'}}),
 );
 
-expectType<Config>(sync('bugs'));
-expectType<{foo: string; [key: string]: unknown}>(
-	sync('bugs', {defaults: {foo: 'bar'}})
+expectType<Config>(packageConfigSync('bugs'));
+expectAssignable<{[key: string]: unknown; foo: string}>(
+	packageConfigSync('bugs', {defaults: {foo: 'bar'}}),
 );
 
-const config = sync('bugs', {defaults: {foo: 'bar'}});
-expectType<string | null>(filepath(config));
+const config = packageConfigSync('bugs', {defaults: {foo: 'bar'}});
+expectType<string | undefined>(packageJsonPath(config));
