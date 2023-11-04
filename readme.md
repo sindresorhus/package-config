@@ -6,8 +6,8 @@ Having tool specific config in package.json reduces the amount of metafiles in y
 
 ## Install
 
-```
-$ npm install pkg-conf
+```sh
+npm install pkg-conf
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ console.log(config.rainbow);
 
 ## API
 
-It [walks up](https://github.com/sindresorhus/find-up) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
+It [walks up](https://github.com/sindresorhus/find-up-simple) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
 
 ### packageConfig(namespace, options?)
 
@@ -93,6 +93,6 @@ Returns the file path to the package.json file or `undefined` if not found.
 
 ## Related
 
-- [read-pkg-up](https://github.com/sindresorhus/read-pkg-up) - Read the closest package.json file
+- [read-package-up](https://github.com/sindresorhus/read-package-up) - Read the closest package.json file
 - [read-pkg](https://github.com/sindresorhus/read-pkg) - Read a package.json file
 - [find-up](https://github.com/sindresorhus/find-up) - Find a file by walking up parent directories

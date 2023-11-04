@@ -1,9 +1,9 @@
 import path from 'node:path';
-import {findUp, findUpSync} from 'find-up';
+import {findUp, findUpSync} from 'find-up-simple';
 import {loadJsonFile, loadJsonFileSync} from 'load-json-file';
 
 const filePaths = new WeakMap();
-const findNextCwd = pkgPath => path.resolve(path.dirname(pkgPath), '..');
+const findNextCwd = packagePath => path.resolve(path.dirname(packagePath), '..');
 
 const addFilePath = (object, filePath) => {
 	filePaths.set(object, filePath);

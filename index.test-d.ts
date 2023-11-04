@@ -1,5 +1,5 @@
 import {expectType, expectAssignable} from 'tsd';
-import {packageConfig, packageConfigSync, packageJsonPath, Config} from './index.js';
+import {packageConfig, packageConfigSync, packageJsonPath, type Config} from './index.js';
 
 await packageConfig('name', {cwd: '.'});
 await packageConfig('name', {skipOnFalse: true});

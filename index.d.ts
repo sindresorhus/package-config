@@ -1,6 +1,6 @@
 export type Config = Record<string, unknown>;
 
-export interface Options<ConfigType extends Config> {
+export type Options<ConfigType extends Config> = {
 	/**
 	The directory to start looking up for a `package.json` file.
 
@@ -32,10 +32,10 @@ export interface Options<ConfigType extends Config> {
 	```
 	*/
 	readonly skipOnFalse?: boolean;
-}
+};
 
 /**
-It [walks up](https://github.com/sindresorhus/find-up) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
+It [walks up](https://github.com/sindresorhus/find-up-simple) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
 
 @param namespace - The `package.json` namespace you want.
 @returns A `Promise` for the config.
@@ -64,7 +64,7 @@ export function packageConfig<ConfigType extends Config = Config>(
 ): Promise<ConfigType & Config>;
 
 /**
-It [walks up](https://github.com/sindresorhus/find-up) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
+It [walks up](https://github.com/sindresorhus/find-up-simple) parent directories until a `package.json` can be found, reads it, and returns the user specified namespace or an empty object if not found.
 
 @param namespace - The `package.json` namespace you want.
 @returns Returns the config.
