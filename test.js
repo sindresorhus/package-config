@@ -7,13 +7,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const cwd = path.join(__dirname, 'fixture');
 const nestedCwd = path.join(cwd, 'nested');
-const pkgPath = path.join(__dirname, 'package.json');
+const pacagePath = path.join(__dirname, 'package.json');
 const nestedPath = path.join(nestedCwd, 'package.json');
 
 test('async', async t => {
 	const config = await packageConfig('fixture', {cwd});
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });
 
 test('async - non-existent namespace', async t => {
@@ -24,7 +24,7 @@ test('async - non-existent namespace', async t => {
 test('sync', t => {
 	const config = packageConfigSync('fixture', {cwd});
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });
 
 test('sync - non-existent namespace', t => {
@@ -58,7 +58,7 @@ test('async - nested skipOnFalse', async t => {
 	});
 
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });
 
 test('async - normal skipOnFalse', async t => {
@@ -68,7 +68,7 @@ test('async - normal skipOnFalse', async t => {
 	});
 
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });
 
 test('sync - nested default', t => {
@@ -88,7 +88,7 @@ test('sync - nested skipOnFalse', t => {
 	});
 
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });
 
 test('sync - normal skipOnFalse', t => {
@@ -98,5 +98,5 @@ test('sync - normal skipOnFalse', t => {
 	});
 
 	t.true(config.foo);
-	t.is(packageJsonPath(config), pkgPath);
+	t.is(packageJsonPath(config), pacagePath);
 });

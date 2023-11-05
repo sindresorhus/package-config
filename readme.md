@@ -1,4 +1,4 @@
-# pkg-conf
+# package-config
 
 > Get namespaced config from the closest package.json
 
@@ -7,7 +7,7 @@ Having tool specific config in package.json reduces the amount of metafiles in y
 ## Install
 
 ```sh
-npm install pkg-conf
+npm install package-config
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ npm install pkg-conf
 ```
 
 ```js
-import {packageConfig} from 'pkg-conf';
+import {packageConfig} from 'package-config';
 
 const config = await packageConfig('unicorn');
 

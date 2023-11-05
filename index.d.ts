@@ -50,7 +50,7 @@ It [walks up](https://github.com/sindresorhus/find-up-simple) parent directories
 // 	}
 // }
 
-import {packageConfig} from 'pkg-conf';
+import {packageConfig} from 'package-config';
 
 const config = await packageConfig('unicorn');
 
@@ -79,7 +79,7 @@ It [walks up](https://github.com/sindresorhus/find-up-simple) parent directories
 // 	}
 // }
 
-import {packageConfigSync} from 'pkg-conf';
+import {packageConfigSync} from 'package-config';
 
 const config = packageConfigSync('unicorn');
 

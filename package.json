@@ -1,9 +1,9 @@
 {
-	"name": "pkg-conf",
+	"name": "package-config",
 	"version": "4.0.0",
 	"description": "Get namespaced config from the closest package.json",
 	"license": "MIT",
-	"repository": "sindresorhus/pkg-conf",
+	"repository": "sindresorhus/package-config",
 	"funding": "https://github.com/sponsors/sindresorhus",
 	"author": {
 		"name": "Sindre Sorhus",
